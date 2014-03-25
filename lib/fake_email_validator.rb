@@ -24,3 +24,7 @@ class FakeEmailValidator < ActiveModel::EachValidator
   end
 
 end
+
+ActiveSupport.on_load(:i18n) do
+  I18n.load_path << File.expand_path('../../config/locales/en.yml', __FILE__)
+end
