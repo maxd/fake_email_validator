@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'fake_email_validator'
-  spec.version       = '0.0.1'
+  spec.version       = '0.0.2'
   spec.authors       = ['Maxim Dobryakov']
   spec.email         = ['maxim.dobryakov@gmail.com']
   spec.summary       = %q{E-Mail validator for Rails to block fake emails}
