@@ -16,6 +16,12 @@ Or install it yourself as:
 
     $ gem install fake_email_validator
 
+## How to use?
+
+Add validator to your User model:
+
+    validates :email, fake_email: true
+
 ## Contributing
 
 1. Fork it ( http://github.com/maxd/fake_email_validator/fork )
