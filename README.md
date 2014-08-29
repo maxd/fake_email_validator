@@ -1,4 +1,4 @@
-# fake_email_validator
+# fake_email_validator [![Build Status](https://travis-ci.org/maxd/fake_email_validator.png?branch=master)](https://travis-ci.org/maxd/fake_email_validator)
 
 E-Mail validator for Rails to block services like mailinator.com
 
