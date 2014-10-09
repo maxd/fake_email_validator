@@ -1,6 +1,6 @@
 require 'minitest_helper'
 
-class TestFakeEmailValidator < MiniTest::Unit::TestCase
+class TestFakeEmailValidator < Minitest::Test
 
   @@user_class = Class.new do
     include ActiveModel::Validations
