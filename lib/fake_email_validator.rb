@@ -16,7 +16,9 @@ class FakeEmailValidator < ActiveModel::EachValidator
     email = Mail::Address.new(value)
 
     domain = email.domain.strip.downcase
-    is_fake = @fake_domains.include?(domain)
+    second_level_domain = domain.split('.')[-2..-1].join('.')
+
+    is_fake = @fake_domains.include?(domain) || @fake_domains.include?(second_level_domain)
 
     record.errors.add attribute, I18n.t(:fake, scope: I18N_SCOPE) if is_fake
   rescue Mail::Field::ParseError
