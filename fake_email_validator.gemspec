@@ -7,8 +7,8 @@ Gem::Specification.new do |spec|
   spec.version       = '1.0.0'
   spec.authors       = ['Maxim Dobryakov']
   spec.email         = ['maxim.dobryakov@gmail.com']
-  spec.summary       = %q{E-Mail validator for Rails to block fake emails}
-  spec.description   = %q{E-Mail validator for Rails to block services like mailinator.com}
+  spec.summary       = %q{E-Mail validator for Rails to block fake email domains}
+  spec.description   = %q{E-Mail validator for block services like mailinator.com, dropmail.me, etc. during new user registration.}
   spec.homepage      = 'https://github.com/maxd/fake_email_validator'
   spec.license       = 'MIT'
 
