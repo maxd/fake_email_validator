@@ -1,26 +1,24 @@
 # fake_email_validator [![Build Status](https://travis-ci.org/maxd/fake_email_validator.png?branch=master)](https://travis-ci.org/maxd/fake_email_validator)
 
-E-Mail validator for Rails to block services like mailinator.com
+E-Mail validator for block services like mailinator.com, dropmail.me, etc. during new user registration.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'fake_email_validator'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install fake_email_validator
+    gem 'fake_email_validator', '~> 1.0.0'
 
 ## How to use?
 
-Add validator to your User model:
+Just add validator to your User model:
 
     validates :email, fake_email: true
+
+## FAQ
+
+### Where is a list of blocked domains?
+
+It is [here](https://github.com/maxd/fake_email_validator/blob/master/config/fake_domains.list).
 
 ## Contributing
 
