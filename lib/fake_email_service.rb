@@ -13,7 +13,9 @@ class FakeEmailService
     domain = email_address.domain.strip.downcase
     second_level_domain = domain.split('.')[-2..-1].join('.')
 
-    @fake_domains.include?(domain) || @fake_domains.include?(second_level_domain)
+    domains = [domain, second_level_domain]
+
+    @fake_domains.any? {|fake_domain| domains.include?(fake_domain) }
   end
 
 end
