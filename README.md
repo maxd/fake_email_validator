@@ -6,7 +6,7 @@ E-Mail validator for block services like mailinator.com, dropmail.me, etc. durin
 
 Add this line to your application's Gemfile:
 
-    gem 'fake_email_validator', '~> 1.0.0'
+    gem 'fake_email_validator', '~> 1.0.1'
 
 ## How to use?
 
