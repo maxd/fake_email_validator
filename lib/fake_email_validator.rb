@@ -1,26 +1,20 @@
 require 'active_model'
-require 'mail'
+require 'fake_email_service'
 
 class FakeEmailValidator < ActiveModel::EachValidator
 
   I18N_SCOPE = 'fake_email_validator.validations.email'
 
+  cattr_accessor :fake_email_service do
+    FakeEmailService.new
+  end
+
   def initialize(options)
     super(options)
-
-    fake_domains_file = File.expand_path('../../config/fake_domains.list', __FILE__)
-    @fake_domains = File.readlines(fake_domains_file).map {|fd| fd.strip.downcase }
   end
 
   def validate_each(record, attribute, value)
-    email = Mail::Address.new(value)
-
-    domain = email.domain.strip.downcase
-    second_level_domain = domain.split('.')[-2..-1].join('.')
-
-    is_fake = @fake_domains.include?(domain) || @fake_domains.include?(second_level_domain)
-
-    record.errors.add attribute, I18n.t(:fake, scope: I18N_SCOPE) if is_fake
+    record.errors.add attribute, I18n.t(:fake, scope: I18N_SCOPE) if fake_email_service.is_fake_email?(value)
   rescue Mail::Field::ParseError
     record.errors.add attribute, I18n.t(:invalid, scope: I18N_SCOPE)
   end
