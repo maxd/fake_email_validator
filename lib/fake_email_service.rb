@@ -11,9 +11,12 @@ class FakeEmailService
     email_address = Mail::Address.new(email)
 
     domain = email_address.domain.strip.downcase
-    second_level_domain = domain.split('.')[-2..-1].join('.')
+    domain_parts = domain.split('.')
 
-    domains = [domain, second_level_domain]
+    second_level_domain = Array(domain_parts[-2..-1]).join('.')
+    third_level_domain = Array(domain_parts[-3..-1]).join('.')
+
+    domains = [domain, second_level_domain, third_level_domain].compact
 
     @fake_domains.any? {|fake_domain| domains.include?(fake_domain) }
   end
