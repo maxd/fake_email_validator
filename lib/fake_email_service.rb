@@ -8,6 +8,8 @@ class FakeEmailService
   end
 
   def is_fake_email?(email)
+    return false if email.blank?
+
     email_address = Mail::Address.new(email)
 
     domain = email_address.domain.strip.downcase
