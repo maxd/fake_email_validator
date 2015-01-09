@@ -2,5 +2,5 @@ en:
   fake_email_validator:
     validations:
       email:
-        invalid: "is invalid format"
-        fake: "is fake domain"
+        invalid: "has invalid format"
+        fake: "has fake domain"

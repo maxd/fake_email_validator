@@ -18,28 +18,28 @@ class TestFakeEmailValidator < Minitest::Test
     @user.email = 'test@b@d.com'
 
     assert !@user.valid?
-    assert_equal 'is invalid format', @user.errors[:email].first
+    assert_equal 'has invalid format', @user.errors[:email].first
   end
 
   def test_fake_email
     @user.email = 'test@mailinator.com'
 
     assert !@user.valid?
-    assert_equal 'is fake domain', @user.errors[:email].first
+    assert_equal 'has fake domain', @user.errors[:email].first
   end
 
   def test_fake_email_with_third_sub_domain
     @user.email = 'test@gsrv.co.uk'
 
     assert !@user.valid?
-    assert_equal 'is fake domain', @user.errors[:email].first
+    assert_equal 'has fake domain', @user.errors[:email].first
   end
 
   def test_fake_email_with_fake_sub_domain
     @user.email = 'test@a.10mail.org'
 
     assert !@user.valid?
-    assert_equal 'is fake domain', @user.errors[:email].first
+    assert_equal 'has fake domain', @user.errors[:email].first
   end
 
   def test_real_email
