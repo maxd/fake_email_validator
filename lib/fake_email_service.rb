@@ -12,7 +12,9 @@ class FakeEmailService
 
     email_address = Mail::Address.new(email)
 
-    domain = email_address.domain.strip.downcase
+    domain = email_address.try(:domain).try(:strip).try(:downcase)
+    return false if domain.blank?
+
     domain_parts = domain.split('.')
 
     second_level_domain = Array(domain_parts[-2..-1]).join('.')
