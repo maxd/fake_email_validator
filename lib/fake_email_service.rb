@@ -1,5 +1,8 @@
 require 'mail'
 
+class FakeEmailException < StandardError
+end
+
 class FakeEmailService
 
   def initialize
@@ -8,11 +11,13 @@ class FakeEmailService
   end
 
   def is_fake_email?(email)
-    return false if email.blank?
-
     email_address = Mail::Address.new(email)
 
-    domain = email_address.domain.strip.downcase
+    domain = email_address.domain
+
+    raise FakeEmailException, 'Domain part in email is not present' if domain.blank?
+
+    domain = domain.strip.downcase
     domain_parts = domain.split('.')
 
     second_level_domain = Array(domain_parts[-2..-1]).join('.')

@@ -14,6 +14,20 @@ class TestFakeEmailValidator < Minitest::Test
     @user = @@user_class.new
   end
 
+  def test_email_without_domain
+    @user.email = 'test'
+
+    assert !@user.valid?
+    assert_equal 'has invalid format', @user.errors[:email].first
+  end
+
+  def test_email_without_local_part
+    @user.email = '@example.com'
+
+    assert !@user.valid?
+    assert_equal 'has invalid format', @user.errors[:email].first
+  end
+
   def test_incorrect_email
     @user.email = 'test@b@d.com'
 

@@ -15,7 +15,7 @@ class FakeEmailValidator < ActiveModel::EachValidator
 
   def validate_each(record, attribute, value)
     record.errors.add attribute, I18n.t(:fake, scope: I18N_SCOPE) if fake_email_service.is_fake_email?(value)
-  rescue Mail::Field::ParseError
+  rescue Mail::Field::ParseError, FakeEmailException
     record.errors.add attribute, I18n.t(:invalid, scope: I18N_SCOPE)
   end
 
