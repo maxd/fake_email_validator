@@ -56,6 +56,13 @@ class TestFakeEmailValidator < Minitest::Test
     assert_equal 'has fake domain', @user.errors[:email].first
   end
 
+  def test_fake_mx_record
+    @user.email = 'test@postonline.me'
+
+    assert !@user.valid?
+    assert_equal 'has fake domain', @user.errors[:email].first
+  end
+
   def test_real_email
     @user.email = 'test@gmail.com'
 
