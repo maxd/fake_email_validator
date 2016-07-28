@@ -1,4 +1,5 @@
 require 'mail'
+require 'resolv'
 
 class FakeEmailException < StandardError
 end
@@ -10,6 +11,20 @@ class FakeEmailService
     @fake_domains = File.readlines(fake_domains_file).map {|fd| fd.strip.downcase }
   end
 
+  def domain_in_parts domain
+    domain = domain.strip.downcase
+    domain_parts = domain.split('.')
+
+    second_level_domain = Array(domain_parts[-2..-1]).join('.')
+    third_level_domain = Array(domain_parts[-3..-1]).join('.')
+
+    [domain, second_level_domain, third_level_domain].compact
+  end
+
+  def resolve_mx_domains domain
+    Resolv::DNS.open.getresources( domain, Resolv::DNS::Resource::IN::MX).map { |s| s.exchange.to_s }
+  end
+
   def is_fake_email?(email)
     email_address = Mail::Address.new(email)
 
@@ -17,15 +32,9 @@ class FakeEmailService
 
     raise FakeEmailException, 'Domain part in email is not present' if domain.blank?
 
-    domain = domain.strip.downcase
-    domain_parts = domain.split('.')
+    email_domains = [domain].concat(resolve_mx_domains(domain)).map { |domain| domain_in_parts(domain) }.flatten.uniq.reject { |c| c.empty? }
 
-    second_level_domain = Array(domain_parts[-2..-1]).join('.')
-    third_level_domain = Array(domain_parts[-3..-1]).join('.')
-
-    domains = [domain, second_level_domain, third_level_domain].compact
-
-    @fake_domains.any? {|fake_domain| domains.include?(fake_domain) }
+    @fake_domains.any? {|fake_domain| email_domains.include?(fake_domain) }
   end
 
 end
