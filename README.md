@@ -2,6 +2,10 @@
 
 E-Mail validator for block services like mailinator.com, dropmail.me, etc. during new user registration.
 
+## Requirements
+
+* [Ruby](https://www.ruby-lang.org/en/downloads/) 2.2.2+
+
 ## Installation
 
 Add this line to your application's Gemfile:

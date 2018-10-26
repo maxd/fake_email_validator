@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{E-Mail validator for block services like mailinator.com, dropmail.me, etc. during new user registration.}
   spec.homepage      = 'https://github.com/maxd/fake_email_validator'
   spec.license       = 'MIT'
+  spec.required_ruby_version = '>= 2.2.2'
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

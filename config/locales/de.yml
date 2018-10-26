@@ -1,0 +1,6 @@
+de:
+  fake_email_validator:
+    validations:
+      email:
+        invalid: "ist ungültig"
+        fake: "Die Domain der Adresse ist nicht gültig."
